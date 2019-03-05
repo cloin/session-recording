@@ -1,0 +1,27 @@
+---
+- name: Install tlog and configure sssd for session recording
+  hosts: all
+  become: yes
+  tasks:
+
+  - name: install tlog and cockpit session recording packages
+    yum:
+      name: "{{ packages }}" 
+      state: latest
+    vars:
+      packages:
+      - cockpit-session-recording
+      - tlog
+
+  - name: configure sssd
+    template:
+      src: templates/sssd.conf.j2
+      dest: /etc/sssd/sssd.conf
+      owner: root
+      group: root
+      mode: 0600
+
+  - name: restart sssd
+    service:
+      name: sssd
+      state: restarted
