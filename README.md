@@ -1,4 +1,4 @@
-# session-recording
+# Showcase session recording in Cockpit web UI
 
 Installs tlog package and cockpit session recording as well as puts a simple sssd.conf in place to record user sessions to demonstrate within Cockpit web UI.
 
